@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta charset="utf-8" />
+    <title>东莞跳一跳</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/jquery.1.8.3.js"></script>
+    <script src="js/fastclick.js"></script>
+    <script src="js/index.js"></script>
+
+</head>
+
+<body>
+
+    <div class="cover">
+        <div class="coverbox"></div>
+        <div class="coverblur"></div>
+        <div class="ico"></div>
+        <div class="covertitle"></div>
+        <div class="cover_chess"></div>
+        <div class="start"></div>
+        <div class="product"></div>
+
+    </div>
+
+
+    <div class="number">
+        <img src="img/0.png" />
+    </div>
+    <div class="logo"></div>
+
+
+    <div class="background" id="background">
+        <div class="tap" id="tap"></div>
+        <div class="chess">
+        </div>
+        <div class="ring"></div>
+        <div class="group g1">
+            <div class="box"></div>
+            <div class="shadow"></div>
+        </div>
+
+
+        <div class="group g2">
+            <div class="box"></div>
+            <div class="shadow "></div>
+        </div>
+
+
+        <div class="group g3">
+            <div class="box"></div>
+            <div class="shadow"></div>
+        </div>
+
+
+
+        <div class="group g4">
+            <div class="box"></div>
+            <div class="shadow"></div>
+        </div>
+
+
+        <div class="group g5">
+            <div class="box"></div>
+            <div class="shadow"></div>
+        </div>
+
+
+        <div class="group g6">
+            <div class="box"></div>
+            <div class="shadow"></div>
+        </div>
+
+
+
+
+
+        <div class="group g7">
+            <div class="box"></div>
+            <div class="shadow"></div>
+        </div>
+
+
+
+
+
+        <div class="group g8">
+            <div class="box"></div>
+            <div class="shadow"></div>
+        </div>
+
+
+
+
+        <!--        <div class="group g9">
+            <div class="box"></div>
+            <div class="shadow"></div>
+        </div>-->
+    </div>
+    <div class="restart"></div>
+    <div class="listBox">
+        <div class="title"></div>
+
+        <div class="listContent">
+            <ul>
+                <li data-order="1">
+                    <img src="img/01.png" />
+                </li>
+                <li data-order="2">
+                    <img src="img/02.png" />
+                </li>
+                <li data-order="3">
+                    <img src="img/03.png" />
+                </li>
+                <li data-order="4">
+                    <img src="img/04.png" />
+                </li>
+                <li data-order="5">
+                    <img src="img/05.png" />
+                </li>
+                <li data-order="6">
+                    <img src="img/06.png" />
+                </li>
+            </ul>
+            <div class="list7"></div>
+            <div class="list8"></div>
+        </div>
+        <div class="share"></div>
+        <div class="restart2"></div>
+    </div>
+
+    <div class="detail" style="display: none;">
+        <div class="detail1" style="display: none;" data-list="1">
+            <div class="detailtitle">经济</div>
+            <div class="close"></div>
+            <div class="r1"></div>
+            <div class="r2"></div>
+            <div class="r3"></div>
+            <div class="keyword k1" data-text="税收总额突破2000亿。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">税收总额</div>
+            </div>
+            <div class="keyword k2" data-text="全市GDP 7580亿元，同比增长8.2%左右，近四年来最高。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">GDP</div>
+            </div>
+            <div class="keyword k3" data-text="市场主体突破100万户。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">市场主体</div>
+            </div>
+            <div class="keyword k4" data-text="全年为企业减负370亿元。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">企业减负</div>
+            </div>
+            <div class="keyword k5" data-text="市级倍增企业主营业务收入超过3600亿元。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">倍增计划</div>
+            </div>
+            <div class="keyword k6" data-text="智能手机出货量3.56亿台。华为、OPPO、VIVO 手机出货量居全球前六。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">智能手机</div>
+            </div>
+            <div class="keyword k7" data-text="完成重大项目投资513.6亿元。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">重大项目</div>
+            </div>
+            <div class="border">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+
+
+
+        <div class="detail2" style="display: none;" data-list="5">
+            <div class="detailtitle">品质</div>
+            <div class="close"></div>
+            <div class="r_bg"></div>
+            <div class="r_line1"></div>
+            <div class="r_line2"></div>
+            <div class="r_line3"></div>
+            <div class="r_line4"></div>
+            <div class="keyword k8" data-text="全市垃圾焚烧能力提升至11300吨/日，无害化处理率达100%。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">垃圾处理</div>
+            </div>
+            <div class="keyword k9" data-text="新建截污管网767.8公里，新扩建9座污水处理厂，铺开76条内河涌污染整治。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">污水整治</div>
+            </div>
+            <div class="keyword k10" data-text="成功实现全国文明城市“四连冠”。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">文明城市</div>
+            </div>
+            <div class="keyword k11" data-text="全市空气质量达标天数301天。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">空气质量</div>
+            </div>
+            <div class="keyword k12" data-text="选定启动第一批次城市建设项目582个，投资规模达1880亿元。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">三年提升计划</div>
+            </div>
+            <div class="keyword k13" data-text="规划8条地铁线路对接广州、深圳、惠州。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">对接广深惠</div>
+            </div>
+            <div class="keyword k14" data-text="新建美丽幸福村居100个。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">幸福村居</div>
+            </div>
+            <div class="border">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+
+
+
+        <div class="detail3" style="display: none;" data-list="6">
+            <div class="detailtitle">善治</div>
+            <div class="close"></div>
+            <div class="n_line"></div>
+            <div class="n_bg"></div>
+            <div class="keyword k15" data-text="深入推进“医药分开”改革，为群众减轻医药费负担7600万元。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">医药分开</div>
+            </div>
+            <div class="keyword k16" data-text="完成11 所公办学校新建扩建工程。新增中小学（幼儿园）64所。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">新建扩建学校</div>
+            </div>
+            <div class="keyword k17" data-text="公布首批1173个“最多跑一次”事项清单。“一门式一网式”改革实现市镇村三级联动。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">深化改革</div>
+            </div>
+            <div class="keyword k18" data-text="低保标准提高到每人每月880元。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">低保标准</div>
+            </div>
+            <div class="keyword k19" data-text="新增随迁子女义务教育公办和补贴学位6.8万个。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">随迁子女学位</div>
+            </div>
+            <div class="keyword k20" data-text="发放就业创业补贴1.38亿元。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">就业创业补贴</div>
+            </div>
+            <div class="keyword k21" data-text="接报违法犯罪警情下降17.2%，刑事立案数下降14.3%。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">打击犯罪</div>
+            </div>
+            <div class="border">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+
+
+
+
+        <div class="detail1" style="display: none;" data-list="4">
+            <div class="detailtitle">协调</div>
+            <div class="close"></div>
+            <div class="r1"></div>
+            <div class="r2"></div>
+            <div class="r3"></div>
+            <div class="keyword k1" data-text="全市划分为6 大片区，谋划14个重点发展先行区。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">6大片区</div>
+            </div>
+            <div class="keyword k2" data-text="松山湖“1+6”统筹组团发展试点取得突破性进展。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">松山湖</div>
+            </div>
+            <div class="keyword k3" data-text="统筹滨海湾新区与东莞港建设，成为粤港澳大湾区城市群发展规划重大发展平台。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">滨海湾新区</div>
+            </div>
+            <div class="keyword k4" data-text="水乡经济区科学谋划新城与片区发展定位，启动水乡新城建设。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">水乡新城</div>
+            </div>
+            <div class="keyword k5" data-text="设立三年30亿元的专项资金，推动次发达镇加快发展。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">扶持发展</div>
+            </div>
+            <div class="keyword k6" data-text="开展东莞韶关对口帮扶，产业共建新签约项目117个、投资规模326.6亿元。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">对口帮扶</div>
+            </div>
+            <div class="keyword k7" data-text="推进韶关、揭阳精准扶贫精准脱贫工作，帮助20055人实现脱贫。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">精准扶贫</div>
+            </div>
+            <div class="border">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+
+
+
+        <div class="detail2" style="display: none;" data-list="2">
+            <div class="detailtitle">创新</div>
+            <div class="close"></div>
+            <div class="r_bg"></div>
+            <div class="r_line1"></div>
+            <div class="r_line2"></div>
+            <div class="r_line3"></div>
+            <div class="r_line4"></div>
+            <div class="keyword k8" data-text="发布广深科技创新走廊东莞段规划和中子科学城概念规划，启动广深高速创新资源带建设。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">创新规划</div>
+            </div>
+            <div class="keyword k9" data-text="预计全市高企数量从2028家增至4077家，总量位居全省地级市第一。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">高企数量</div>
+            </div>
+            <div class="keyword k10" data-text="新增国家级孵化器培育单位11个、省创新科研团队5个、省创新创业领军人才3名。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">创新团队</div>
+            </div>
+            <div class="keyword k11" data-text="企业研发机构全年获省资助达6.2亿元，在全省地级市中大幅领先。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">资助研发</div>
+            </div>
+            <div class="keyword k12" data-text="落实研发费加计扣除政策，为1245家企业对应减免税款21.9亿元。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">减免税款</div>
+            </div>
+            <div class="keyword k13" data-text="推动金融机构为科技企业发放贷款268.1亿元，增长37%。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">金融贷款</div>
+            </div>
+            <div class="keyword k14" data-text="境内外上市企业、新三板挂牌企业分别增至43家和202家。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">上市企业</div>
+            </div>
+            <div class="border">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+
+
+
+        <div class="detail3" style="display: none;" data-list="3">
+            <div class="detailtitle">开放</div>
+            <div class="close"></div>
+            <div class="n_line"></div>
+            <div class="n_bg"></div>
+            <div class="keyword k15" data-text="在全国率先实行“以企业为单元”的加工贸易监管模式等改革。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">贸易监管</div>
+            </div>
+            <div class="keyword k16" data-text="口岸“三互”大通关实现全覆盖。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">三互大通关</div>
+            </div>
+            <div class="keyword k17" data-text="全市一般贸易（含保税物流）占比达46%。外企内销总额增长19%，占内外销比重达38.1%。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">加工贸易创新</div>
+            </div>
+            <div class="keyword k18" data-text="国际小包出口8821万件，总量排全国第四。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">国际出口</div>
+            </div>
+            <div class="keyword k19" data-text="粤港跨境直通快线正式开通，实现粤港无缝清关，货物快速直抵香港机场。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">粤港跨境</div>
+            </div>
+            <div class="keyword k20" data-text="全市社会消费品零售总额2690亿元，增长10%。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">消费品零售</div>
+            </div>
+            <div class="keyword k21" data-text="对“一带一路”国家和地区出口约1200亿。开通俄罗斯进口班列，启动中欧双向班列。">
+                <div class="pointer_shadow"></div>
+                <div class="pointer"></div>
+                <div class="pointer_title">一带一路</div>
+            </div>
+            <div class="border">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+        <div class="detail4" style="display: none;" data-list="7">
+            <div class="close">
+            </div>
+            <div class="list2title">十件实事</div>
+            <ul>
+                <li>
+                    <div>1</div>
+                    <div>全面深化医药卫生体制综合改革，提升医疗服务水平</div>
+                </li>
+                <li>
+                    <div>2</div>
+                    <div>加大拥堵治理和路网等基础设施建设力度，改善交通出行条件</div>
+                </li>
+                <li class="big">
+                    <div>3</div>
+                    <div>强力打击各类违法犯罪活动，提高精准化社会综合治理服务水平，提升警务办证效率</div>
+                </li>
+                <li>
+                    <div>4</div>
+                    <div>加强水环境污染治理，推进截污次支管网建设和河涌整治</div>
+                </li>
+                <li>
+                    <div>5</div>
+                    <div>提升食品安全保障水平，推进食品安全设施建设</div>
+                </li>
+                <li>
+                    <div>6</div>
+                    <div>增加学位供给，扶持民办学校发展，加强教育基础设施建设</div>
+                </li>
+                <li>
+                    <div>7</div>
+                    <div>优化养老服务供给，提高养老保障水平</div>
+                </li>
+                <li>
+                    <div>8</div>
+                    <div>促进就业创业，提升劳动者就业技能素质</div>
+                </li>
+                <li>
+                    <div>9</div>
+                    <div>提高市民安全意识和应急救护技能，开展生活安全和应急救护知识培训</div>
+                </li>
+                <li class="big">
+                    <div>10</div>
+                    <div>深入持续推进精神文明创建，更好满足市民日益增长的优质公共文体服务需要</div>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="detail4" data-list="8" style="display: none;">
+            <div class="close">
+            </div>
+            <div class="list2title">展望2018</div>
+            <ul>
+                <li>
+                    <div>1</div>
+                    <div>生产总值增长8%左右</div>
+                </li>
+                <li>
+                    <div>2</div>
+                    <div>市一般公共预算收入增长9.5%</div>
+                </li>
+                <li>
+                    <div>3</div>
+                    <div>国家高企数量达4500家</div>
+                </li>
+                <li>
+                    <div>4</div>
+                    <div>新建截污管网1300公里</div>
+                </li>
+                <li>
+                    <div>5</div>
+                    <div>城镇生活污水处理率达到95%以上</div>
+                </li>
+                <li>
+                    <div>6</div>
+                    <div>空气质量达标天数310天以上</div>
+                </li>
+                <li>
+                    <div>7</div>
+                    <div>全面完成年度节能减排任务</div>
+                </li>
+                <li>
+                    <div>8</div>
+                    <div style="line-height: .4rem;">新提供随迁子女义务教育公办和补贴学位13万个</div>
+                </li>
+                <li>
+                    <div>9</div>
+                    <div style="line-height: .4rem;">城乡居民人均可支配收入增长8.5%以上</div>
+                </li>
+                <li style="height: 1px; padding: 1px; background: none;"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="sharebox">
+        <img src="img/share_tips.png" />
+    </div>
+    <div style="width: 0; height: 0; line-height: 0; position: absolute; z-index: -1; display: none;">
+        <script src="https://s13.cnzz.com/z_stat.php?id=1272532844&web_id=1272532844" language="JavaScript"></script>
+    </div>
+</body>
+
+</html>
