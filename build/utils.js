@@ -9,7 +9,9 @@ exports.assetsPath = function (_path) {
     ? config.build.assetsSubDirectory
     : config.dev.assetsSubDirectory
 
-  return path.posix.join(assetsSubDirectory, _path)
+  return path
+    .posix
+    .join(assetsSubDirectory, _path)
 }
 
 exports.cssLoaders = function (options) {
@@ -25,30 +27,34 @@ exports.cssLoaders = function (options) {
   const postcssLoader = {
     loader: 'postcss-loader',
     options: {
+      minimize: process.env.NODE_ENV === 'production',
       sourceMap: options.sourceMap
     }
   }
 
+  const px2remLoader = {
+    loader: 'px2rem-loader',
+    options: {
+      remUnit: 37.5
+    }
+  };
   // generate loader string to be used with extract text plugin
-  function generateLoaders (loader, loaderOptions) {
-    const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
+  function generateLoaders(loader, loaderOptions) {
+    const loaders = options.usePostCSS
+      ? [cssLoader, px2remLoader, postcssLoader]
+      : [cssLoader, px2remLoader];
 
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
-        options: Object.assign({}, loaderOptions, {
-          sourceMap: options.sourceMap
-        })
+        options: Object.assign({}, loaderOptions, {sourceMap: options.sourceMap})
       })
     }
 
-    // Extract CSS when that option is specified
-    // (which is the case during production build)
+    // Extract CSS when that option is specified (which is the case during
+    // production build)
     if (options.extract) {
-      return ExtractTextPlugin.extract({
-        use: loaders,
-        fallback: 'vue-style-loader'
-      })
+      return ExtractTextPlugin.extract({use: loaders, fallback: 'vue-style-loader'})
     } else {
       return ['vue-style-loader'].concat(loaders)
     }
@@ -59,7 +65,7 @@ exports.cssLoaders = function (options) {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
+    sass: generateLoaders('sass', {indentedSyntax: true}),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
@@ -86,10 +92,14 @@ exports.createNotifierCallback = () => {
   const notifier = require('node-notifier')
 
   return (severity, errors) => {
-    if (severity !== 'error') return
+    if (severity !== 'error') 
+      return
 
     const error = errors[0]
-    const filename = error.file && error.file.split('!').pop()
+    const filename = error.file && error
+      .file
+      .split('!')
+      .pop()
 
     notifier.notify({
       title: packageConfig.name,
