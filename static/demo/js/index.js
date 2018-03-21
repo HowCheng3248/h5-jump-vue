@@ -1,7 +1,7 @@
    var step = 1;
    var currentOrder = 0;
-   var startBottom = 2.3;
-   var startLeft = 1.12;
+   var startBottom = 2.8;
+   var startLeft = 4.8;
    var direction = "transform:rotateY(180deg)";
    var startTime;
    var t2, tPoint;
@@ -23,52 +23,54 @@
        [1, 1],
    ];
    var stepLength = [
-       [3.02, 1.9],
+       [-3.02, 1.9],
        [3.02, 2.04],
        [-3.02, 1.9],
        [3.02, 2],
-       [3.02, 2],
-       [-3.02, 2.04],
+       [-3.02, 2],
+       [3.02, 2.04],
+       [-3.02, 2.1],
        [3.02, 2.1],
        [-1, 1] //最后一步移动方向判定
    ];
    var tips = [
-       '“四连冠”，（文明城市）',
-       '突破七千亿，（GDP）',
-       '出货3.56亿台，（智能手机）',
-       '新建767.8公里，（截污管网）',
-       '新增6.8万个，（随迁子女学位）',
-       '出口8821万件，（国际小包）',
-       ''
+     {text:'1991年，2002年',answer:1},
+     {text:'糖尿病，高血压',answer:0},
+     {text:'长沙 ，北京',answer:0},
+     {text:'2012年 ，2015年',answer:0},
+     {text:'蓝色，红色',answer:1},
+     {text:'you ，love',answer:1},
+     {text:'安稳+ ，安准+',answer:0},
+     {text:'28，18',answer:0},
+     {text:'135个，105个',answer:0}
    ]
    var background;
    var imglist = [
        'sannuo.png',
        'e1.png',
        'c3.png',
-       'coverbox.png',
-       'n.png',
        'c2.png',
-       'r3.png',
-       'nline.png',
        'c1.png',
-       'r_bg.png',
        'c8.png',
-       'logo.png',
        'c4.png',
-       'share_tips.png',
        'c7.png',
        'c5.png',
        'c9.png',
-       'ico.png',
-       'c6.png'
+       'c6.png',
+       'p2-3.png',
+       'p2-2.png',
+       'p2-1.png',
+       'p2-8.png',
+       'p2-4.png',
+       'p2-7.png',
+       'p2-5.png',
+       'p2-9.png',
+       'p2-6.png',
+       'p2-btn-lg.png',
+       'p2-btn-sl.png',
    ];
    var pressvoice, landvoice;
    var playing;
-   //(function (window) {
-   //    var audio = new Audio();
-   //    window.wxAudio = audio;
-   //})(window);
    $(function () {
        //rem定义
        var innerWidth = window.innerWidth > 750 ? 750 : window.innerWidth;
@@ -79,8 +81,6 @@
            loadingChess();
        }, 2000);
        playing = new Audio();
-       //   pressvoice = document.getElementById("press");
-       //    landvoice = document.getElementById("land");
        document.addEventListener("WeixinJSBridgeReady", function () {
            // alert("wxb loaded!");
            pressvoice = new Audio();
@@ -197,7 +197,7 @@
                });
            }, 30);
            $(".chess").html("");
-           for (var i = 0; i < 8; i++) {
+           for (var i = 0; i < 9; i++) {
                point();
            }
            tPoint = setInterval(function () {
@@ -249,7 +249,7 @@
                    if (stepWidth < 0) {
                        //    log("turn direction");
                        $(".chess").css({
-                           "background-position": -step * 2.76 + "rem 0rem",
+                          //  "background-position": -step * 2.76 + "rem 0rem",
                            "left": startLeft + pos[step][0] * stepWidth + "rem",
                            "bottom": startBottom + pos[step][1] * stepHeight + "rem",
                            "transform": "rotateY(0deg)",
@@ -257,9 +257,9 @@
                        });
                    }
                    $(".ring").css({
-                       "bottom": $(".chess").css("bottom").replace("px", "") - 20 * innerWidth /
+                       "bottom": $(".chess").css("bottom").replace("px", "") - 71 * innerWidth /
                            750,
-                       "left": $(".chess").css("left").replace("px", "") - 54 * innerWidth / 750
+                       "left": $(".chess").css("left").replace("px", "") - 114 * innerWidth / 750
                    });
                    $(".ring").addClass("ring_in");
                    var currentBottom = $(".background").css("bottom").replace("px", "");
@@ -301,7 +301,7 @@
                }
 
            }, 30);
-           if (currentOrder == 6) {
+           if (currentOrder == 7) {
                background.removeEventListener("touchstart", tStart, false);
                background.removeEventListener("touchend", jump, false);
                setTimeout(function () {
@@ -365,12 +365,23 @@
        });
    }
 
+   /*答题部分*/
    function showTips() {
-       var code = "<p>" + tips[currentOrder].replace("，", "</p><p>") + "</p>";
+       var code ='<a class="btn btn-A"><span>A</span>'+tips[currentOrder].text.replace("，", '</a><a class="btn btn-B"><span>B</span>')+'</a>';
        var oTips = $("<div/>", {
-           "class": "tips tips_in"
-       }).html(code).appendTo($(".chess"));
+           "class": "tips tips_in p"+(currentOrder+1)
+       }).html(code).appendTo($("body"));
+       $(".mask").show();
        log(tips[currentOrder]);
+       $(".tips_in").on('click','.btn',function(e){
+        $(".mask").css('z-index',199999998);
+        if($(this).index()==tips[currentOrder-1].answer){
+          $("#right").show();
+        }else {
+          $("#wrong").show();
+        }
+        
+       });
    }
 
 
@@ -403,12 +414,12 @@
        });
        step = 1;
        currentOrder = 0;
-       startBottom = 2.3;
-       startLeft = 1.12;
+       startBottom = 2.8;
+       startLeft = 4.8;
        allowJump = true;
        $(".chess").css({
-           "bottom": "2.3rem",
-           "left": "1.12rem"
+           "bottom": "2.8rem",
+           "left": "4.8rem"
        }).html("");
        $(".box").removeClass("box_in");
        $(".shadow").removeClass("shadow_in");
