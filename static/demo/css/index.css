@@ -31,11 +31,10 @@
  }
 
  .chess {
-     width: 2.76rem;
-     height: 3.45rem;
-     background-size: 33.12rem 3.45rem;
-     background-position: 0rem 0rem;
-     background-image: url('../img/e3.png');
+     width: 1.45rem;
+     height: 1.58rem;
+     background-size: 1.45rem 1.58rem;
+     background-image: url('../img/sannuo.png');
      position: absolute;
      bottom: 2.3rem;
      left: 1.12rem;
@@ -86,59 +85,27 @@
      transform-origin: bottom center;
  }
 
- .group .shadow {
-     width: 3.55rem;
-     height: 2.02rem;
-     background-image: url('../img/s2.png');
-     background-size: 100% 100%;
-     top: .78rem;
-     left: -.7rem;
-     position: absolute;
-     z-index: 99;
-     opacity: .3;
-     -webkit-transform: translateY(-10.5rem) translateX(-10.5rem);
-     transform: translateY(-10.5rem) translateX(-10.5rem);
-     -webkit-transform-origin: bottom center;
-     transform-origin: bottom center;
- }
-
  .g1 {
-     left: 1rem;
+     left: 4rem;
      bottom: 1rem;
  }
 
  .g1 .box {
-     background-image: url('../img/c8.png');
-     background-size: 2.70rem 2.55rem;
+     background-image: url('../img/c1.png');
+     background-size: 2.73rem 1.97rem;
      -webkit-transform: translateY(0);
      transform: translateY(0);
  }
-
- .g1 .shadow {
-     top: .74rem;
-     -webkit-transform: translateY(0) translateX(0);
-     transform: translateY(0) translateX(0);
- }
-
  .g2 {
-     left: 4rem;
+     left: 1rem;
      bottom: 3rem;
  }
 
  .g2 .box {
-     background-image: url('../img/c6.png');
-     background-size: 2.39rem 2.37rem;
+     background-image: url('../img/c2.png');
+     background-size: 3.28rem 2.34rem;
      -webkit-transform: translateY(0);
      transform: translateY(0);
- }
-
- .g2 .shadow {
-     width: 3.12rem;
-     height: 1.77rem;
-     top: .9rem;
-     left: -.42rem;
-     -webkit-transform: translateY(0) translateX(0);
-     transform: translateY(0) translateX(0);
  }
 
  .g3 {
@@ -147,12 +114,8 @@
  }
 
  .g3 .box {
-     background-image: url('../img/c003.png');
-     background-size: 2.89rem 2.48rem;
- }
-
- .g3 .shadow {
-     top: .7rem;
+     background-image: url('../img/c3.png');
+     background-size: 2.8rem 2.07rem;
  }
 
  .g4 {
@@ -161,8 +124,8 @@
  }
 
  .g4 .box {
-     background-image: url('../img/c5.png');
-     background-size: 2.70rem 2.55rem;
+     background-image: url('../img/c4.png');
+     background-size: 3.35rem 2.06rem;
  }
 
  .g5 {
@@ -171,27 +134,17 @@
  }
 
  .g5 .box {
-     background-image: url('../img/c2.png');
-     background-size: 2.8rem 2.6rem;
+     background-image: url('../img/c5.png');
+     background-size: 3.72rem 2.39rem;
  }
-
- .g5 .shadow {}
-
  .g6 {
      left: 10rem;
      bottom: 11rem;
  }
 
  .g6 .box {
-     background-image: url('../img/c7.png');
-     background-size: 2.60rem 2.42rem;
- }
-
- .g6 .shadow {
-     width: 3.05rem;
-     height: 1.74rem;
-     top: .94rem;
-     left: -0.4rem;
+     background-image: url('../img/c6.png');
+     background-size: 2.81rem 2.08rem;
  }
 
  .g7 {
@@ -200,8 +153,8 @@
  }
 
  .g7 .box {
-     background-image: url('../img/c4.png');
-     background-size: 2.88rem 2.65rem;
+     background-image: url('../img/c7.png');
+     background-size: 3.31rem 2.35rem;
  }
 
  .g8 {
@@ -210,13 +163,19 @@
  }
 
  .g8 .box {
-     background-image: url('../img/c9.png');
-     background-size: 2.70rem 2.55rem;
+     background-image: url('../img/c8.png');
+     background-size: 2.81rem 2.09rem;
  }
 
- .g8 .shadow {
-     top: .74rem;
- }
+ .g9 {
+  left: 10rem;
+  bottom: 17rem;
+}
+
+.g9 .box {
+  background-image: url('../img/c8.png');
+  background-size: 2.79rem 2.07rem;
+}
 
  .box_in {
      -webkit-animation: box_in .8s linear forwards;

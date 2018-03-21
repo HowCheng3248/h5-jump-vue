@@ -43,9 +43,9 @@
    ]
    var background;
    var imglist = [
-       'e3.png',
+       'sannuo.png',
        'e1.png',
-       'c003.png',
+       'c3.png',
        'coverbox.png',
        'n.png',
        'c2.png',
@@ -59,6 +59,7 @@
        'share_tips.png',
        'c7.png',
        'c5.png',
+       'c9.png',
        'ico.png',
        'c6.png'
    ];
@@ -237,7 +238,7 @@
            landVoice();
            var t1 = setInterval(function () {
                $(".chess").css({
-                   "background-position": -step * 2.76 + "rem 0rem",
+                  //  "background-position": -step * 2.76 + "rem 0rem",
                    "left": startLeft + pos[step][0] * stepWidth + "rem",
                    "bottom": startBottom + pos[step][1] * stepHeight + "rem",
                    "transform": direction,
@@ -470,7 +471,7 @@
 
 
    function pressVoice(controlType) {
-       playing.src = "voice/press2.mp3";
+      /*  playing.src = "voice/press2.mp3";
        playing.load();
        if (controlType == 0) { //停止
            if (playing.play()) {
@@ -483,12 +484,12 @@
            log("play");
            playing.play();
            //    }
-       }
+       } */
 
    }
 
    function landVoice() {
-       playing.src = "voice/land2.mp3";
+      /*  playing.src = "voice/land2.mp3";
        playing.load();
        if (playing.play()) {
            playing.pause();
@@ -497,6 +498,6 @@
        } else {
            playing.currentTime = 0.0;
            playing.play();
-       }
+       } */
        //alert("landed!");
    }
