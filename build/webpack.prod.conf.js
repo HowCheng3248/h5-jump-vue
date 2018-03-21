@@ -60,7 +60,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
-    new HtmlWebpackPlugin({
+    /* new HtmlWebpackPlugin({
       filename: config.build.index,
       template: 'index.html',
       inject: true,
@@ -73,7 +73,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
-    }),
+    }), */
     // keep module.id stable when vendor modules does not change
     new webpack.HashedModuleIdsPlugin(),
     // enable scope hoisting
@@ -140,6 +140,27 @@ if (config.build.productionGzip) {
 if (config.build.bundleAnalyzerReport) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+}
+
+var pages = utils.getEntry([`${config.entryPath[0]}/**/*.html`, `${config.entryPath[1]}/**/*.html`]);
+
+for (var pathname in pages) {
+
+
+  // 配置生成的html文件，定义路径等
+  var conf = {
+    filename: pathname + '.html',
+    template: pages[pathname], // 模板路径
+    // favicon: './src/assets/images/wechat.png',
+    inject: true // js插入位置
+
+  };
+  if (pathname in pages) {
+   // conf.chunks = ['manifest','vendors', pathname,'app'];
+    conf.hash = true;
+    conf.chunksSortMode= 'dependency';
+  }
+  webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
 }
 
 module.exports = webpackConfig

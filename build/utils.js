@@ -3,7 +3,7 @@ const path = require('path')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
-
+const glob = require('glob')
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsSubDirectory
@@ -35,7 +35,7 @@ exports.cssLoaders = function (options) {
   const px2remLoader = {
     loader: 'px2rem-loader',
     options: {
-      remUnit: 37.5
+      remUnit:75
     }
   };
   // generate loader string to be used with extract text plugin
@@ -108,4 +108,20 @@ exports.createNotifierCallback = () => {
       icon: path.join(__dirname, 'logo.png')
     })
   }
+}
+
+//增加获取多入口的方法 注意 这个参数是个数组
+exports.getEntry = function(globPaths) {
+  var entries = {},
+    basename, tmp, pathname;
+  for (let globPath of globPaths) {
+    glob.sync(globPath).forEach(function(entry) {
+      basename = path.basename(entry, path.extname(entry));
+      tmp = entry.split('/').splice(-3);
+      pathname = tmp.splice(0, 1) + '/' + basename; // 正确输出js和html的路径
+      entries[pathname] = entry;
+    });
+  }
+  console.log(entries);
+  return entries;
 }
