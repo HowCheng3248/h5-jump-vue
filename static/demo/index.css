@@ -38,7 +38,7 @@
      position: absolute;
      bottom: 2.8rem;
      left: 4.8rem;
-     z-index: 2;
+     z-index: 9999;
      -webkit-transform-origin: bottom center;
      transform-origin: bottom center;
  }
@@ -66,7 +66,7 @@
      background-repeat: no-repeat;
      width: 3rem;
      height: 3rem;
-     z-index: 1;
+     z-index: 999;
      position: absolute;
      -webkit-transform: translateY(-11.5rem);
      transform: translateY(-11.5rem);
@@ -273,7 +273,7 @@
      background-image: url('../img/ring.png');
      background-size: 100% 100%;
      position: absolute;
-     z-index: 2;
+     z-index: 9998;
      bottom: 2.1rem;
      left: .58rem;
      -webkit-transform: scale(0.4);
@@ -330,7 +330,7 @@
      top: 50%;
      -webkit-transform: translateX(-50%) translateY(-50%);
      transform: translateX(-50%) translateY(-50%);
-     z-index: 13;
+     z-index: 999999999;
      display: none;
  }
 
@@ -437,11 +437,10 @@
      left: 0;
      right: 0;
      bottom: 0;
-     z-index: 10;
+     z-index: 20000000;
      background-image: url('../img/bg-1.jpg');
      background-size: 100% 100%;
      background-repeat: repeat-x;
-     z-index: 11;
  }
 
  .cover .start {
@@ -461,7 +460,7 @@
   height:.64rem;
   background-size: 100% 100%;
   background-image: url(../img/sound.png);
-  z-index:15;
+  z-index:1999999999;
   right:.2rem;
   top:.2rem;
 }
@@ -474,7 +473,7 @@
      position: fixed;
      bottom: 0.1rem;
      right: 0;
-     z-index: 11;
+     z-index: 99999999;
      opacity: 1;
      display: block;
  }
@@ -601,7 +600,7 @@
      position: absolute;
      top: .3rem;
      left: .6rem;
-     z-index: 10;
+     z-index: 9999;
  }
 
  .number.score0 {
@@ -660,22 +659,24 @@
      left: 0;
      bottom: 0;
      right: 0;
-     background-color:#000;
-     opacity: .8;
-     z-index: 10;
+     background-image: url('../img/blur_bg.png');
+     background-repeat: repeat;
+     z-index: 99999999;
      display: none;
  }
 
+ .mask {
+     z-index: 99999998;
+ }
  .sharebox{
    width:4.13rem;
    height:5.01rem;
    background-size: 100% 100%;
    background-image:url(../img/share_tips.png);
    position: fixed;
-   z-index:17;
+   z-index:2999999999;
    top:0;
    right:0;
-   display: none;
  }
  #wrong,
  #right {
@@ -686,7 +687,6 @@
      -webkit-transform: translateX(-50%) translateY(-50%);
      transform: translateX(-50%) translateY(-50%);
      display: none;
-     z-index: 12;
  }
 
  #wrong {
@@ -706,7 +706,7 @@
      bottom: 0rem;
      left: 0rem;
      position: absolute;
-     z-index: 10;
+     z-index: 99999;
      display: none;
  }
 
@@ -720,7 +720,7 @@
    position: fixed;
    top:0;
    left:0;
-   z-index: 14;
+   z-index: 1999999997;
    display: none;
  }
  .anwser-box{
@@ -768,7 +768,7 @@
   position: fixed;
   top:0;
   left:0;
-  z-index: 11;
+  z-index: 1999999999;
   border:1px solid #fff;
   border-radius: 4px;
   top:.2rem;
