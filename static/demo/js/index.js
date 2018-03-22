@@ -3,54 +3,111 @@ var currentOrder = 0;
 var startBottom = 2.8;
 var startLeft = 4.8;
 var direction = "transform:rotateY(180deg)";
-var startTime;
 var score = 0;
-var t2, tPoint;
+var t2,
+  tPoint;
 var currentScale = 1;
 var allowJump = false;
 var evt;
-var tipsTime = 500,
-  jumpTime = 1000;
+var questionTime = 500,
+  jumpTime = 1000,
+  isFirstTouch = true;
 var pos = [
-  [0.09, 0.3],
-  [0.18, 0.6],
-  [0.27, 0.9],
-  [0.36, 1.2],
-  [0.45, 1.5],
-  [0.55, 1.7],
-  [0.64, 1.6],
-  [0.73, 1.4],
-  [0.82, 1.2],
-  [0.91, 1],
-  [1, 1],
-  [1, 1],
+  [
+    0.09, 0.3
+  ],
+  [
+    0.18, 0.6
+  ],
+  [
+    0.27, 0.9
+  ],
+  [
+    0.36, 1.2
+  ],
+  [
+    0.45, 1.5
+  ],
+  [
+    0.55, 1.7
+  ],
+  [
+    0.64, 1.6
+  ],
+  [
+    0.73, 1.4
+  ],
+  [
+    0.82, 1.2
+  ],
+  [
+    0.91, 1
+  ],
+  [
+    1, 1
+  ],
+  [1, 1]
 ];
 var stepLength = [
-  [-3.02, 1.9],
-  [3.02, 2.04],
-  [-3.02, 1.9],
-  [3.02, 2],
-  [-3.02, 2],
-  [3.02, 2.04],
-  [-3.02, 2.1],
-  [3.02, 2.1],
+  [
+    -3.02, 1.9
+  ],
+  [
+    3.02, 2.04
+  ],
+  [
+    -3.02, 1.9
+  ],
+  [
+    3.02, 2
+  ],
+  [
+    -3.02, 2
+  ],
+  [
+    3.02, 2.04
+  ],
+  [
+    -3.02, 2.1
+  ],
+  [
+    3.02, 2.1
+  ],
   [-1, 1] //最后一步移动方向判定
 ];
-var tips = [
-  {text: '1991年，2002年', answer: 1},
-  {text: '糖尿病，高血压', answer: 0},
-  {text: '长沙 ，北京', answer: 0},
-  {text: '2012年 ，2015年', answer: 0},
-  {text: '蓝色，红色', answer: 1},
-  {text: 'you ，love', answer: 1},
-  {text: '安稳+ ，安准+', answer: 0},
-  {text: '28，18', answer: 0},
-  {text: '135个，105个', answer: 0}
+var question = [
+  {
+    text: '1991年，2002年',
+    answer: 1
+  }, {
+    text: '糖尿病，高血压',
+    answer: 0
+  }, {
+    text: '长沙 ，北京',
+    answer: 0
+  }, {
+    text: '2012年 ，2015年',
+    answer: 0
+  }, {
+    text: '蓝色，红色',
+    answer: 1
+  }, {
+    text: 'you ，love',
+    answer: 1
+  }, {
+    text: '安稳+ ，安准+',
+    answer: 0
+  }, {
+    text: '28，18',
+    answer: 0
+  }, {
+    text: '135个，105个',
+    answer: 0
+  }
 ]
 var background;
 var imglist = [
   'sannuo.png',
-  'e1.png',
   'c3.png',
   'c2.png',
   'c1.png',
@@ -91,12 +148,20 @@ var imglist = [
   '90p.png',
   '60p.png',
   '00p.png',
+  'bg-1.jpg',
+  'p4-1.png',
+  'p4-2.png',
+  'p4-3.png',
+  'p4-4.png'
 ];
-var pressvoice, landvoice;
+var pressvoice,
+  landvoice;
 var playing;
 $(function () {
   //rem定义
-  var innerWidth = window.innerWidth > 750 ? 750 : window.innerWidth;
+  var innerWidth = window.innerWidth > 750
+    ? 750
+    : window.innerWidth;
   document.documentElement.style.fontSize = innerWidth / 7.5 + 'px';
   FastClick.attach(document.body);
   background = document.getElementById("tap");
@@ -118,66 +183,27 @@ $(function () {
   preload(function () {
     $(".start").fadeIn(300);
     $(".start").one("click", function () {
-      //pressvoice = new Audio();
-      //pressvoice.src = "voice/press2.mp3";
-      //pressvoice.oncanplaythrough = function () {
-      //    alert("loaded!");
-      //};
+      // pressvoice = new Audio(); pressvoice.src = "voice/press2.mp3";
+      // pressvoice.oncanplaythrough = function () {    alert("loaded!"); };
       clearInterval(load_ani);
       $("#tap").show();
       $(".cover").fadeOut(300);
       allowJump = true;
       evt = window.event;
-      tStart();
-      // background.addEventListener("touchstart", tStart, false);
-      $(".listContent").find("li").each(function () {
-        $(this).click(function () {
-          //log("li clicked!");
-          $(".detail").find("div[data-list]").hide();
-          $(".detail").find("div[data-list='" + $(this).data(
-            "order") + "']").show();
-          $(".detail").find("div[data-list='" + $(this).data(
-            "order") + "']").find(".border").find("h3")
-            .html("   ");
-          $(".detail").find("div[data-list='" + $(this).data(
-            "order") + "']").find(".border").find("p").html(
-            "请点击关键词查看亮点");
-          $(".detail").fadeIn(300);
-        });
-      });
-      $(".list7").click(function () {
-        log("展望2018");
-        $(".detail").find("div[data-list]").hide();
-        $(".detail").find("div[data-list='8']").show();
-        $(".detail").find("div[data-list='8']").find("li").addClass(
-          "li_in");
-        $(".detail").fadeIn(300);
-      });
-      $(".list8").click(function () {
-        log("十件实事");
-        $(".detail").find("div[data-list]").hide();
-        $(".detail").find("div[data-list='7']").show();
-        $(".detail").find("div[data-list='7']").find("li").addClass(
-          "li_in");
-        $(".detail").fadeIn(300);
-
-      });
-
-      $(".keyword").click(function () {
-        $(this).parent("div").find(".border").find("h3").html($(this).find(
-          ".pointer_title").html());
-        $(this).parent("div").find(".border").find("p").html($(this).data(
-          "text"));
-      });
-      $(".close").click(function () {
-        $(this).parents(".detail").fadeOut(300);
-      });
-      $(".restart").click(function () {
+      background.addEventListener("touchend", tStart, false);
+      $('.again-btn').click(function () {
         reset();
+      });
+      $('.anwser-btn').click(function(){
+        $('.anwser-container').show();
+      });
+      $('.back-btn').click(function(){
+        $('.anwser-container').hide();
+        $(".mask").css('z-index', 16).show();
+        $(".sharebox").show();
       });
     });
   });
-
 
   console.warn("程序员の警告:");
   console.error("慢慢改吧,反正还有大把时光");
@@ -189,28 +215,29 @@ function log(t) {
   console.log(t);
 }
 
-
 function tStart() {
   evt.preventDefault();
-
+  isFirstTouch = false;
+  if (!isFirstTouch) {
+    background.removeEventListener("touchend", tStart, false);
+  }
   //开始问题
-  // showTips(jump);
+  showQuestion(jump);
   if (!allowJump) {
     return false;
   } else {
     pressVoice(1);
     var box = $(".g" + (currentOrder + 1));
-    //    var shadow = $(".g" + (currentOrder + 1)).find(".shadow");
     t2 = setInterval(function () {
       currentScale -= 0.01;
-      currentScale = currentScale < 0.9 ? 0.9 : currentScale;
+      currentScale = currentScale < 0.9
+        ? 0.9
+        : currentScale;
       box.css("transform", "scaleY(" + currentScale + ")");
-      //     shadow.css("transform", "scaleY(" + currentScale + ")");
+
       $(".chess").css({
-        "transform": "translateY(" + (1 - currentScale) * 50 + "px) scaleY(" +
-        currentScale + ") scaleX(" + (1 + (1 - currentScale) / 3) + ")",
-        "-webkit-transform": "translateY(" + (1 - currentScale) * 50 + "px) scaleY(" +
-        currentScale + ") scaleX(" + (1 + (1 - currentScale) / 3) + ")"
+        "transform": "translateY(" + (1 - currentScale) * 50 + "px) scaleY(" + currentScale + ") scaleX(" + (1 + (1 - currentScale) / 3) + ")",
+        "-webkit-transform": "translateY(" + (1 - currentScale) * 50 + "px) scaleY(" + currentScale + ") scaleX(" + (1 + (1 - currentScale) / 3) + ")"
       });
     }, 30);
     $(".chess").html("");
@@ -224,7 +251,6 @@ function tStart() {
 }
 
 function jump() {
-  //  return false;
   if (allowJump) {
     allowJump = false;
     clearInterval(t2);
@@ -233,14 +259,14 @@ function jump() {
     var stepWidth = stepLength[currentOrder][0];
     var stepHeight = stepLength[currentOrder][1];
     pressVoice(0);
+
     if (stepWidth < 0) {
       direction = "rotateY(180deg)";
     } else {
       direction = "rotateY(0deg)";
     }
 
-    var box = $(".g" + (currentOrder + 1)); //.find(".box");
-    //   var shadow = $(".g" + (currentOrder + 1)).find(".shadow");
+    var box = $(".g" + (currentOrder + 1));
     var pressedScale = currentScale;
     currentScale = 1;
     var t3 = setInterval(function () {
@@ -249,10 +275,10 @@ function jump() {
         clearInterval(t3);
       }
       box.css("transform", "scaleY(" + currentScale + ")");
-      //   shadow.css("transform", "scaleY(" + currentScale + ")")
     }, 60);
 
     landVoice();
+
     var t1 = setInterval(function () {
       $(".chess").css({
         //  "background-position": -step * 2.76 + "rem 0rem",
@@ -264,9 +290,7 @@ function jump() {
 
       if (step == 11) {
         if (stepWidth < 0) {
-          //    log("turn direction");
           $(".chess").css({
-            //  "background-position": -step * 2.76 + "rem 0rem",
             "left": startLeft + pos[step][0] * stepWidth + "rem",
             "bottom": startBottom + pos[step][1] * stepHeight + "rem",
             "transform": "rotateY(0deg)",
@@ -274,88 +298,64 @@ function jump() {
           });
         }
         $(".ring").css({
-          "bottom": $(".chess").css("bottom").replace("px", "") - 71 * innerWidth /
-          750,
-          "left": $(".chess").css("left").replace("px", "") - 114 * innerWidth / 750
+          "bottom": $(".chess")
+            .css("bottom")
+            .replace("px", "") - 71 * innerWidth / 750,
+          "left": $(".chess")
+            .css("left")
+            .replace("px", "") - 114 * innerWidth / 750
         });
         $(".ring").addClass("ring_in");
-        var currentBottom = $(".background").css("bottom").replace("px", "");
-        var currentLeft = $(".background").css("left").replace("px", "");
+        var currentBottom = $(".background")
+          .css("bottom")
+          .replace("px", "");
+        var currentLeft = $(".background")
+          .css("left")
+          .replace("px", "");
         var moveLeft = currentLeft;
         if (stepLength[currentOrder][0] * stepLength[currentOrder + 1][0] < 0) { //转向时，横向不移动;
         } else {
           moveLeft = currentLeft - stepLength[currentOrder][0] * innerWidth / 7.5;
         }
         $(".background").animate({
-          bottom: currentBottom - stepLength[currentOrder][1] * innerWidth / 7.5 +
-          "px",
-          left: moveLeft + "px",
+          bottom: currentBottom - stepLength[currentOrder][1] * innerWidth / 7.5 + "px",
+          left: moveLeft + "px"
         }, 600);
-        /*if (tips[currentOrder] != '') {
-          showTips();
-        } else {
-          log("last box,no message");
-        }*/
-
 
         setTimeout(function () {
           $(".ring").removeClass("ring_in");
         }, 500);
-        $(".g" + (parseInt(currentOrder) + 3)).find(".box").addClass("box_in");
-        $(".g" + (parseInt(currentOrder) + 3)).find(".shadow").addClass("shadow_in");
+
+        $(".g" + (parseInt(currentOrder) + 3))
+          .find(".box")
+          .addClass("box_in");
         step = 1;
         startLeft += stepLength[currentOrder][0];
         startBottom += stepLength[currentOrder][1];
         currentOrder += 1;
-        $(".number").find("img").attr("src", "img/" + currentOrder + ".png");
+        $(".number")
+          .find("img")
+          .attr("src", "img/" + currentOrder + ".png");
         clearInterval(t1);
-
+        if (currentOrder == 8) {
+          jumpTime = 700;
+        }
         setTimeout(function () {
           allowJump = true;
-          showTips(jump);
+          showQuestion(jump);
         }, jumpTime);
-
       } else {
         step++;
       }
 
     }, 30);
-    if (currentOrder == 7) {
-      allowJump = false;
-      /* background.removeEventListener("touchstart", tStart, false);
-       background.removeEventListener("touchend", jump, false);*/
-      /*setTimeout(function () {
-        $(".listBox").addClass("listBox_in");
-        $("#tap").hide();
-        listFadeIn();
-      }, 1000);*/
-    }
-  } else {
-
-  }
+    // if (currentOrder == 7) {   allowJump = false;
+    // background.removeEventListener("touchstart", tStart, false);
+    // background.removeEventListener("touchend", jump, false);*/
+    // setTimeout(function () {     $(".listBox").addClass("listBox_in");
+    // $("#tap").hide();     listFadeIn();   }, 1000); }
+  } else {}
 }
-
-function listFadeIn() {
-  $(".listContent").find("li").each(function () {
-    $(this).css({
-      "animation-delay": $(this).data("order") * 200 + "ms",
-      "-webkit-animation-delay": $(this).data("order") * 200 + "ms"
-    });
-    $(this).addClass("list_in");
-  });
-  $(".list7").addClass("btn_in");
-  $(".list8").addClass("btn_in");
-  $(".share").addClass("share_in");
-  $(".share").click(function () {
-    $(".sharebox").fadeIn(300).click(function () {
-      $(this).fadeOut(300);
-    });
-  });
-  $(".restart2").click(function () {
-    reset2();
-  });
-}
-
 
 function point() {
   var rdnStartTop = parseInt(Math.random() * 100);
@@ -364,64 +364,100 @@ function point() {
   color = color[parseInt(Math.random() * 2)];
   var width = parseInt(Math.random() * 2) + 8;
   var fixedPosition1 = parseInt(Math.random() * 40);
-  fixedPosition1 = fixedPosition1 % 2 == 0 ? fixedPosition1 : -fixedPosition1;
-  fixedPosition2 = fixedPosition2 % 2 == 0 ? fixedPosition2 : -fixedPosition2;
+  fixedPosition1 = fixedPosition1 % 2 == 0
+    ? fixedPosition1
+    : -fixedPosition1;
+  fixedPosition2 = fixedPosition2 % 2 == 0
+    ? fixedPosition2
+    : -fixedPosition2;
   var fixedPosition2 = parseInt(Math.random() * 20);
-  rdnStartTop = rdnStartTop % 2 == 0 ? rdnStartTop + 100 : 350 - rdnStartTop;
-  rdnStartLeft = rdnStartLeft % 2 == 0 ? rdnStartLeft : 200 - rdnStartLeft;
+  rdnStartTop = rdnStartTop % 2 == 0
+    ? rdnStartTop + 100
+    : 350 - rdnStartTop;
+  rdnStartLeft = rdnStartLeft % 2 == 0
+    ? rdnStartLeft
+    : 200 - rdnStartLeft;
   var rdnDurationTime = parseInt(Math.random() * 1000 + 1000);
   $("<div/>", {
-    'class': 'point',
-    'style': 'top:' + rdnStartTop / 100 + 'rem;left:' + rdnStartLeft / 100 +
-    'rem;background-color:' + color + ';width:' + width / 100 + "rem;height:" + width / 100 +
-    "rem"
-  }).appendTo($(".chess")).animate({
-    top: (2 + fixedPosition1 / 100) + 'rem',
-    left: (1.3 + fixedPosition2 / 100) + 'rem'
-  }, rdnDurationTime, 'swing', function () {
-    $(this).remove();
-  });
+      'class': 'point',
+      'style': 'top:' + rdnStartTop / 100 + 'rem;left:' + rdnStartLeft / 100 + 'rem;background-color:' + color + ';width:' + width / 100 + "rem;height:" + width / 100 + "rem"
+    })
+    .appendTo($(".chess"))
+    .animate({
+      top: (2 + fixedPosition1 / 100) + 'rem',
+      left: (1.3 + fixedPosition2 / 100) + 'rem'
+    }, rdnDurationTime, 'swing', function () {
+      $(this).remove();
+    });
 }
 
 /****答题部分*****/
-function showTips(cb) {
-  $('.tips').remove();
+function showQuestion(cb) {
+  $('.question').remove();
   var code,
-    text = tips[currentOrder].text.split("，");
-  // code = '<a class="btn btn-A"><span>A</span>' + tips[currentOrder].text.replace("，", '</a><a class="btn btn-B"><span>B</span>') + '</a>';
+    text = question[currentOrder]
+      .text
+      .split("，");
   var code = '<a class="btn btn-A"><span>A</span>' + text[0] + '</a><a class="btn btn-B"><span>B</span>' + text[1] + '</a>';
-  var oTips = $("<div/>", {
-    "class": "tips tips_in p" + (currentOrder + 1)
-  }).html(code).appendTo($("body"));
-
+  var oquestion = $("<div/>", {
+      "class": "question question_in p" + (currentOrder + 1)
+    })
+    .html(code)
+    .appendTo($("body"));
   $(".mask").show();
-  log(tips[currentOrder]);
-  if (currentOrder == 6) {
-    $(".mask").find('.btn').addClass('.p7');
-  } else {
-    $(".mask").find('.btn').remove('.p7');
-  }
-  $(".tips_in").on('click', '.btn', function () {
-    $(".mask").css('z-index', 199999998);
-    if ($(this).index() === tips[currentOrder].answer) {
-      $("#right").show();
-      score++;
-      $('.number').attr('class', 'number score' + score);
-    } else {
-      $("#wrong").show();
-    }
-    setTimeout(function () {
-      if (currentOrder == 8) {//最后一步
-        allowJump = false;
-      }
-      cb();
-      $(".mask").css('z-index', 99999998).hide();
-      $("#right,#wrong").hide();
-      $('.tips').remove();
-    }, tipsTime);
-  });
-}
 
+  //第7题选项需要改变
+  if (currentOrder == 6) {
+    $(".mask")
+      .find('.btn')
+      .addClass('.p7');
+  } else {
+    $(".mask")
+      .find('.btn')
+      .remove('.p7');
+  }
+
+  $(".question_in")
+    .on('click', '.btn', function () {
+      $(".mask").css('z-index', 12);
+      if ($(this).index() === question[currentOrder].answer) {
+        $("#right").show();
+        score++;
+        $('.number').attr('class', 'number score' + score);
+      } else {
+        $("#wrong").show();
+      }
+      setTimeout(function () {
+
+        $(".mask")
+          .css('z-index', 11)
+          .hide();
+        $("#right,#wrong").hide();
+        $('.question').remove();
+        if (currentOrder == 8) { //最后一步
+          allowJump = false;
+          var $scoreBox = $('.score-box'),
+            git = '';
+          gif = score <= 2
+            ? 'gif3'
+            : (2 < score <= 6)
+              ? 'gif2'
+              : 'gif1';
+          $scoreBox
+            .addClass(gif)
+            .show();
+          $scoreBox
+            .find('.scoreCon')
+            .attr('class', 'scoreCon p' + score);
+          $(".mask")
+            .css('z-index', 12)
+            .show();
+        } else {
+          cb();
+        }
+      }, questionTime);
+    });
+}
 
 function loadingChess() {
   var o = 0;
@@ -433,9 +469,10 @@ function loadingChess() {
     h += 0.2 * stu;
     if (h > 1) {
       stu = -1
-    }
-    ;
-    o = o > 11 ? 0 : o;
+    };
+    o = o > 11
+      ? 0
+      : o;
     $(".cover_chess").css({
       "background-position": -o * 2.76 + "rem 0rem",
       "bottom": (4.8 + h) + "rem"
@@ -447,25 +484,29 @@ function loadingChess() {
 }
 
 function reset() {
-  $(".background").css({
-    "bottom": 0,
-    "left": 0
-  });
+
+  $(".background").css({"bottom": 0, "left": 0});
   step = 1;
   $('.number').attr('class', 'number score0');
+  $('.question').remove();
+  $('.score-box').hide();
+  $(".mask")
+    .css('z-index', 11)
+    .hide();
   score = 0;
   currentOrder = 0;
   startBottom = 2.8;
   startLeft = 4.8;
+  jumpTime = 1000;
   allowJump = true;
-  $(".chess").css({
-    "bottom": "2.8rem",
-    "left": "4.8rem"
-  }).html("");
-  tStart();
+  background.addEventListener("touchend", tStart, false);
+  $(".chess")
+    .css({"bottom": "2.8rem", "left": "4.8rem"})
+    .html("");
   $(".box").removeClass("box_in");
-  $(".shadow").removeClass("shadow_in");
-  $(".number").find("img").attr("src", "img/" + currentOrder + ".png");
+  $(".number")
+    .find("img")
+    .attr("src", "img/" + currentOrder + ".png");
 }
 
 function reset2() {
@@ -475,7 +516,6 @@ function reset2() {
   $(".listBox").removeClass("listBox_in");
   $("#tap").show();
 }
-
 
 function preload(cb) { //图片预加载
   var tmpList = imglist;
@@ -489,33 +529,19 @@ function preload(cb) { //图片预加载
       $("#imgArr").append(img);
       img.onload = function () {
         loadedCount++;
-        log("图片:" + img.src + "加载完成");
+        // log("图片:" + img.src + "加载完成");
         tmpList.pop(tmpList[i]);
-        log("剩余数量:" + tmpList.length);
+        // log("剩余数量:" + tmpList.length);
       };
-      if (img.complete) {
-
-      } else {
-      }
+      if (img.complete) {} else {}
     }
     if (loadedCount == loopCount) {
       log("大图加载完成");
-      //  var v1 = new Audio();
-      //pressvoice = new Audio();
-      //pressvoice.src = "voice/press2.mp3";
-      //pressvoice.oncanplaythrough = function () {
-      //    alert("loaded!");
-      //};
-      //v1.src = "voice/press2.mp3";
-      //v1.canplay = function () {
-      //    alert("v1 loaded");
-      //    var v2 = new Audio();
-      //    v2.src = "voice/land2.mp3";
-      //    v2.canplay = function () {
-      //        alert("v2 loaded");
-
-      //    }
-      //}
+      //  var v1 = new Audio(); pressvoice = new Audio(); pressvoice.src =
+      // "voice/press2.mp3"; pressvoice.oncanplaythrough = function () {
+      // alert("loaded!"); }; v1.src = "voice/press2.mp3"; v1.canplay = function () {
+      // alert("v1 loaded");    var v2 = new Audio();    v2.src = "voice/land2.mp3";
+      // v2.canplay = function () {        alert("v2 loaded");    } }
 
       cb();
 
@@ -523,7 +549,6 @@ function preload(cb) { //图片预加载
     }
   }, 500);
 }
-
 
 function pressVoice(controlType) {
   /*  playing.src = "voice/press2.mp3";
