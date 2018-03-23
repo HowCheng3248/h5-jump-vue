@@ -191,17 +191,26 @@ $(function () {
       allowJump = true;
       evt = window.event;
       background.addEventListener("touchend", tStart, false);
-      $('.again-btn').click(function () {
+      $('.again-btn').click(function () {//再来一次
         reset();
       });
-      $('.anwser-btn').click(function(){
+      $('.anwser-btn').click(function () {//查看答案
         $('.anwser-container').show();
       });
-      $('.back-btn').click(function(){
+      $('.back-btn').click(function () {//返回查看分数
         $('.anwser-container').hide();
-        $(".mask").css('z-index', 16).show();
-        $(".sharebox").show();
       });
+      $('.share-btn').click(function () {//分享提示
+        var $mask = $(".mask");
+        $mask.css('z-index', 16).show();
+        $(".sharebox").show();
+        $mask.click(function () {
+          $mask.css('z-index', 10).hide();
+          $(".sharebox").hide();
+          $mask.unbind('click');
+        });
+      });
+
     });
   });
 
@@ -354,7 +363,8 @@ function jump() {
     // background.removeEventListener("touchend", jump, false);*/
     // setTimeout(function () {     $(".listBox").addClass("listBox_in");
     // $("#tap").hide();     listFadeIn();   }, 1000); }
-  } else {}
+  } else {
+  }
 }
 
 function point() {
@@ -379,9 +389,9 @@ function point() {
     : 200 - rdnStartLeft;
   var rdnDurationTime = parseInt(Math.random() * 1000 + 1000);
   $("<div/>", {
-      'class': 'point',
-      'style': 'top:' + rdnStartTop / 100 + 'rem;left:' + rdnStartLeft / 100 + 'rem;background-color:' + color + ';width:' + width / 100 + "rem;height:" + width / 100 + "rem"
-    })
+    'class': 'point',
+    'style': 'top:' + rdnStartTop / 100 + 'rem;left:' + rdnStartLeft / 100 + 'rem;background-color:' + color + ';width:' + width / 100 + "rem;height:" + width / 100 + "rem"
+  })
     .appendTo($(".chess"))
     .animate({
       top: (2 + fixedPosition1 / 100) + 'rem',
@@ -400,8 +410,8 @@ function showQuestion(cb) {
       .split("，");
   var code = '<a class="btn btn-A"><span>A</span>' + text[0] + '</a><a class="btn btn-B"><span>B</span>' + text[1] + '</a>';
   var oquestion = $("<div/>", {
-      "class": "question question_in p" + (currentOrder + 1)
-    })
+    "class": "question question_in p" + (currentOrder + 1)
+  })
     .html(code)
     .appendTo($("body"));
   $(".mask").show();
@@ -533,7 +543,9 @@ function preload(cb) { //图片预加载
         tmpList.pop(tmpList[i]);
         // log("剩余数量:" + tmpList.length);
       };
-      if (img.complete) {} else {}
+      if (img.complete) {
+      } else {
+      }
     }
     if (loadedCount == loopCount) {
       log("大图加载完成");
