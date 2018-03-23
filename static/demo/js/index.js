@@ -1,4 +1,17 @@
-var step = 1;
+var
+  // HOST = '/apis',
+  HOST = 'http://zc57h.ruosi.wang',
+  GETBASEINFO = '/wx/getBaseInfo';
+
+var shareData = {
+  title: '诺诺日记-重温匠心之路',
+  desc: '我正在闯关答题，快来和我一起瓜分5万元！',
+  link: window.location.href,
+  imgUrl: 'http://' + window.location.host + window
+    .location
+    .pathname
+    .split('/index.html')[0] + '/img/sannuo-samll.jpg'
+};
 var currentOrder = 0;
 var startBottom = 2.8;
 var startLeft = 4.8;
@@ -170,18 +183,19 @@ $(function () {
   }, 2000);
   playing = new Audio();
   /*document.addEventListener("WeixinJSBridgeReady", function () {
-    // alert("wxb loaded!");
-    pressvoice = new Audio();
-    pressvoice.src = "voice/press2.mp3";
-    pressvoice.load();
-    landvoice = new Audio();
-    landvoice.src = "voice/land2.mp3";
-    landvoice.load();
-    playing = new Audio();
-    // pressvoice.play();
-  }, false);*/
+      // alert("wxb loaded!");
+      pressvoice = new Audio();
+      pressvoice.src = "voice/press2.mp3";
+      pressvoice.load();
+      landvoice = new Audio();
+      landvoice.src = "voice/land2.mp3";
+      landvoice.load();
+      playing = new Audio();
+      // pressvoice.play();
+    }, false);*/
   preload(function () {
     $(".start").fadeIn(300);
+    getWxConfig();
     $(".start").one("click", function () {
       // pressvoice = new Audio(); pressvoice.src = "voice/press2.mp3";
       // pressvoice.oncanplaythrough = function () {    alert("loaded!"); };
@@ -191,21 +205,25 @@ $(function () {
       allowJump = true;
       evt = window.event;
       background.addEventListener("touchend", tStart, false);
-      $('.again-btn').click(function () {//再来一次
+      $('.again-btn').click(function () { //再来一次
         reset();
       });
-      $('.anwser-btn').click(function () {//查看答案
+      $('.anwser-btn').click(function () { //查看答案
         $('.anwser-container').show();
       });
-      $('.back-btn').click(function () {//返回查看分数
+      $('.back-btn').click(function () { //返回查看分数
         $('.anwser-container').hide();
       });
-      $('.share-btn').click(function () {//分享提示
+      $('.share-btn').click(function () { //分享提示
         var $mask = $(".mask");
-        $mask.css('z-index', 16).show();
+        $mask
+          .css('z-index', 16)
+          .show();
         $(".sharebox").show();
         $mask.click(function () {
-          $mask.css('z-index', 10).hide();
+          $mask
+            .css('z-index', 10)
+            .hide();
           $(".sharebox").hide();
           $mask.unbind('click');
         });
@@ -214,15 +232,7 @@ $(function () {
     });
   });
 
-  console.warn("程序员の警告:");
-  console.error("慢慢改吧,反正还有大把时光");
 })
-
-//调试
-function log(t) {
-  //  return;
-  console.log(t);
-}
 
 function tStart() {
   evt.preventDefault();
@@ -358,13 +368,7 @@ function jump() {
       }
 
     }, 30);
-    // if (currentOrder == 7) {   allowJump = false;
-    // background.removeEventListener("touchstart", tStart, false);
-    // background.removeEventListener("touchend", jump, false);*/
-    // setTimeout(function () {     $(".listBox").addClass("listBox_in");
-    // $("#tap").hide();     listFadeIn();   }, 1000); }
-  } else {
-  }
+  } else {}
 }
 
 function point() {
@@ -389,9 +393,9 @@ function point() {
     : 200 - rdnStartLeft;
   var rdnDurationTime = parseInt(Math.random() * 1000 + 1000);
   $("<div/>", {
-    'class': 'point',
-    'style': 'top:' + rdnStartTop / 100 + 'rem;left:' + rdnStartLeft / 100 + 'rem;background-color:' + color + ';width:' + width / 100 + "rem;height:" + width / 100 + "rem"
-  })
+      'class': 'point',
+      'style': 'top:' + rdnStartTop / 100 + 'rem;left:' + rdnStartLeft / 100 + 'rem;background-color:' + color + ';width:' + width / 100 + "rem;height:" + width / 100 + "rem"
+    })
     .appendTo($(".chess"))
     .animate({
       top: (2 + fixedPosition1 / 100) + 'rem',
@@ -410,8 +414,8 @@ function showQuestion(cb) {
       .split("，");
   var code = '<a class="btn btn-A"><span>A</span>' + text[0] + '</a><a class="btn btn-B"><span>B</span>' + text[1] + '</a>';
   var oquestion = $("<div/>", {
-    "class": "question question_in p" + (currentOrder + 1)
-  })
+      "class": "question question_in p" + (currentOrder + 1)
+    })
     .html(code)
     .appendTo($("body"));
   $(".mask").show();
@@ -519,14 +523,6 @@ function reset() {
     .attr("src", "img/" + currentOrder + ".png");
 }
 
-function reset2() {
-  reset();
-  /* background.addEventListener("touchstart", tStart, false);
-   background.addEventListener("touchend", jump, false);*/
-  $(".listBox").removeClass("listBox_in");
-  $("#tap").show();
-}
-
 function preload(cb) { //图片预加载
   var tmpList = imglist;
   var t1 = setInterval(function () {
@@ -539,16 +535,12 @@ function preload(cb) { //图片预加载
       $("#imgArr").append(img);
       img.onload = function () {
         loadedCount++;
-        // log("图片:" + img.src + "加载完成");
         tmpList.pop(tmpList[i]);
-        // log("剩余数量:" + tmpList.length);
       };
-      if (img.complete) {
-      } else {
-      }
+      if (img.complete) {} else {}
     }
     if (loadedCount == loopCount) {
-      log("大图加载完成");
+      console.log("大图加载完成");
       //  var v1 = new Audio(); pressvoice = new Audio(); pressvoice.src =
       // "voice/press2.mp3"; pressvoice.oncanplaythrough = function () {
       // alert("loaded!"); }; v1.src = "voice/press2.mp3"; v1.canplay = function () {
@@ -564,32 +556,70 @@ function preload(cb) { //图片预加载
 
 function pressVoice(controlType) {
   /*  playing.src = "voice/press2.mp3";
-   playing.load();
-   if (controlType == 0) { //停止
-       if (playing.play()) {
-           playing.pause();
-           log("stop");
-       }
-   } else {
-       //  if (!pressvoice.play()) {
-       playing.currentTime = 0.0;
-       log("play");
-       playing.play();
-       //    }
-   } */
+     playing.load();
+     if (controlType == 0) { //停止
+         if (playing.play()) {
+             playing.pause();
+             log("stop");
+         }
+     } else {
+         //  if (!pressvoice.play()) {
+         playing.currentTime = 0.0;
+         log("play");
+         playing.play();
+         //    }
+     } */
 
 }
 
 function landVoice() {
   /*  playing.src = "voice/land2.mp3";
-   playing.load();
-   if (playing.play()) {
-       playing.pause();
-       playing.currentTime = 0.0;
-       playing.play();
-   } else {
-       playing.currentTime = 0.0;
-       playing.play();
-   } */
+     playing.load();
+     if (playing.play()) {
+         playing.pause();
+         playing.currentTime = 0.0;
+         playing.play();
+     } else {
+         playing.currentTime = 0.0;
+         playing.play();
+     } */
   //alert("landed!");
+}
+
+//获取微信配置参数
+function getWxConfig() {
+  var successCb = function (data) {
+    var wxConfig = JSON.parse(data);
+    wx.config({
+      debug: true,
+      appId: wxConfig.appId,
+      timestamp: wxConfig.timestamp,
+      nonceStr: wxConfig.noncestr,
+      signature: wxConfig.signature,
+      jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']
+    });
+    wx.ready(function () {
+      initWxShare();
+    });
+  };
+  var errorCb = function (data) {};
+  var upData = JSON.stringify({url: window.location.href});
+  var config = {
+    url: GETBASEINFO,
+    type: 'POST',
+    data: upData,
+    success: successCb,
+    error: errorCb
+  };
+  getAjax(config);
+}
+//绑定微信功能
+function initWxShare() {
+  wx.onMenuShareTimeline({title: shareData.desc, imgUrl: shareData.imgUrl, link: shareData.link});
+  wx.onMenuShareAppMessage(shareData);
+}
+
+function getAjax(data) {
+  data.url = HOST + data.url;
+  $.ajax(data);
 }
