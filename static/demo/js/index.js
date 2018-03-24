@@ -12,6 +12,7 @@ var shareData = {
     .pathname
     .split('/index.html')[0] + '/img/sannuo-samll.jpg'
 };
+var step =1;
 var currentOrder = 0;
 var startBottom = 2.8;
 var startLeft = 4.8;
@@ -193,6 +194,16 @@ $(function () {
       playing = new Audio();
       // pressvoice.play();
     }, false);*/
+  var soundBtn = document.getElementsByClassName('sound')[0];
+  soundBtn.addEventListener("touchstart", function(){
+    if($(this).hasClass('run')){
+      $(this).removeClass('run');
+      $('#soundFile')[0].pause();
+    }else {
+      $(this).addClass('run');
+      $('#soundFile')[0].play();
+    }
+  }, false);
   preload(function () {
     $(".start").fadeIn(300);
     getWxConfig();
@@ -368,7 +379,8 @@ function jump() {
       }
 
     }, 30);
-  } else {}
+  } else {
+  }
 }
 
 function point() {
@@ -393,9 +405,9 @@ function point() {
     : 200 - rdnStartLeft;
   var rdnDurationTime = parseInt(Math.random() * 1000 + 1000);
   $("<div/>", {
-      'class': 'point',
-      'style': 'top:' + rdnStartTop / 100 + 'rem;left:' + rdnStartLeft / 100 + 'rem;background-color:' + color + ';width:' + width / 100 + "rem;height:" + width / 100 + "rem"
-    })
+    'class': 'point',
+    'style': 'top:' + rdnStartTop / 100 + 'rem;left:' + rdnStartLeft / 100 + 'rem;background-color:' + color + ';width:' + width / 100 + "rem;height:" + width / 100 + "rem"
+  })
     .appendTo($(".chess"))
     .animate({
       top: (2 + fixedPosition1 / 100) + 'rem',
@@ -414,8 +426,8 @@ function showQuestion(cb) {
       .split("，");
   var code = '<a class="btn btn-A"><span>A</span>' + text[0] + '</a><a class="btn btn-B"><span>B</span>' + text[1] + '</a>';
   var oquestion = $("<div/>", {
-      "class": "question question_in p" + (currentOrder + 1)
-    })
+    "class": "question question_in p" + (currentOrder + 1)
+  })
     .html(code)
     .appendTo($("body"));
   $(".mask").show();
@@ -483,7 +495,8 @@ function loadingChess() {
     h += 0.2 * stu;
     if (h > 1) {
       stu = -1
-    };
+    }
+    ;
     o = o > 11
       ? 0
       : o;
@@ -537,7 +550,9 @@ function preload(cb) { //图片预加载
         loadedCount++;
         tmpList.pop(tmpList[i]);
       };
-      if (img.complete) {} else {}
+      if (img.complete) {
+      } else {
+      }
     }
     if (loadedCount == loopCount) {
       console.log("大图加载完成");
@@ -602,7 +617,8 @@ function getWxConfig() {
       initWxShare();
     });
   };
-  var errorCb = function (data) {};
+  var errorCb = function (data) {
+  };
   var upData = JSON.stringify({url: window.location.href});
   var config = {
     url: GETBASEINFO,
@@ -613,6 +629,7 @@ function getWxConfig() {
   };
   getAjax(config);
 }
+
 //绑定微信功能
 function initWxShare() {
   wx.onMenuShareTimeline({title: shareData.desc, imgUrl: shareData.imgUrl, link: shareData.link});
