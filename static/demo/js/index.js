@@ -2,16 +2,6 @@ var
   // HOST = '/apis',
   HOST = 'http://zc57h.ruosi.wang',
   GETBASEINFO = '/wx/getBaseInfo';
-
-var shareData = {
-  title: '诺诺日记-重温匠心之路',
-  desc: '我正在闯关答题，快来和我一起瓜分5万元！',
-  link: window.location.href,
-  imgUrl: 'http://' + window.location.host + window
-    .location
-    .pathname
-    .split('/index.html')[0] + '/img/sannuo-samll.jpg'
-};
 var step =1;
 var currentOrder = 0;
 var startBottom = 2.8;
@@ -168,9 +158,6 @@ var imglist = [
   'p4-3.png',
   'p4-4.png'
 ];
-var pressvoice,
-  landvoice;
-var playing;
 $(function () {
   //rem定义
   var innerWidth = window.innerWidth > 750
@@ -182,18 +169,6 @@ $(function () {
   var load_ani = setInterval(function () {
     loadingChess();
   }, 2000);
-  playing = new Audio();
-  /*document.addEventListener("WeixinJSBridgeReady", function () {
-      // alert("wxb loaded!");
-      pressvoice = new Audio();
-      pressvoice.src = "voice/press2.mp3";
-      pressvoice.load();
-      landvoice = new Audio();
-      landvoice.src = "voice/land2.mp3";
-      landvoice.load();
-      playing = new Audio();
-      // pressvoice.play();
-    }, false);*/
   var soundBtn = document.getElementsByClassName('sound')[0];
   soundBtn.addEventListener("touchstart", function(){
     if($(this).hasClass('run')){
@@ -206,10 +181,8 @@ $(function () {
   }, false);
   preload(function () {
     $(".start").fadeIn(300);
-    getWxConfig();
+    $("#background").show();
     $(".start").one("click", function () {
-      // pressvoice = new Audio(); pressvoice.src = "voice/press2.mp3";
-      // pressvoice.oncanplaythrough = function () {    alert("loaded!"); };
       clearInterval(load_ani);
       $("#tap").show();
       $(".cover").fadeOut(300);
@@ -556,87 +529,8 @@ function preload(cb) { //图片预加载
     }
     if (loadedCount == loopCount) {
       console.log("大图加载完成");
-      //  var v1 = new Audio(); pressvoice = new Audio(); pressvoice.src =
-      // "voice/press2.mp3"; pressvoice.oncanplaythrough = function () {
-      // alert("loaded!"); }; v1.src = "voice/press2.mp3"; v1.canplay = function () {
-      // alert("v1 loaded");    var v2 = new Audio();    v2.src = "voice/land2.mp3";
-      // v2.canplay = function () {        alert("v2 loaded");    } }
-
       cb();
-
       clearInterval(t1);
     }
   }, 500);
-}
-
-function pressVoice(controlType) {
-  /*  playing.src = "voice/press2.mp3";
-     playing.load();
-     if (controlType == 0) { //停止
-         if (playing.play()) {
-             playing.pause();
-             log("stop");
-         }
-     } else {
-         //  if (!pressvoice.play()) {
-         playing.currentTime = 0.0;
-         log("play");
-         playing.play();
-         //    }
-     } */
-
-}
-
-function landVoice() {
-  /*  playing.src = "voice/land2.mp3";
-     playing.load();
-     if (playing.play()) {
-         playing.pause();
-         playing.currentTime = 0.0;
-         playing.play();
-     } else {
-         playing.currentTime = 0.0;
-         playing.play();
-     } */
-  //alert("landed!");
-}
-
-//获取微信配置参数
-function getWxConfig() {
-  var successCb = function (data) {
-    var wxConfig = JSON.parse(data);
-    wx.config({
-      debug: true,
-      appId: wxConfig.appId,
-      timestamp: wxConfig.timestamp,
-      nonceStr: wxConfig.noncestr,
-      signature: wxConfig.signature,
-      jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']
-    });
-    wx.ready(function () {
-      initWxShare();
-    });
-  };
-  var errorCb = function (data) {
-  };
-  var upData = JSON.stringify({url: window.location.href});
-  var config = {
-    url: GETBASEINFO,
-    type: 'POST',
-    data: upData,
-    success: successCb,
-    error: errorCb
-  };
-  getAjax(config);
-}
-
-//绑定微信功能
-function initWxShare() {
-  wx.onMenuShareTimeline({title: shareData.desc, imgUrl: shareData.imgUrl, link: shareData.link});
-  wx.onMenuShareAppMessage(shareData);
-}
-
-function getAjax(data) {
-  data.url = HOST + data.url;
-  $.ajax(data);
 }
