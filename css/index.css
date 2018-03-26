@@ -465,13 +465,16 @@ body {
   right: .2rem;
   top: .2rem;
 }
-.sound.run{
-  animation: rotate 1s linear  infinite;
+
+.sound.run {
+  animation: rotate 1s linear infinite;
   -webkit-animation: rotate linear 1s infinite;
 }
-#soundFile{
+
+#soundFile {
   opacity: 0;
 }
+
 @keyframes rotate {
   100% {
     transform: rotate(360deg);
@@ -495,7 +498,8 @@ body {
     -o-transform: rotate(0deg);
   }
 }
-@-webkit-keyframes rotate{
+
+@-webkit-keyframes rotate {
   100% {
     transform: rotate(360deg);
     -ms-transform: rotate(360deg);
@@ -723,7 +727,7 @@ body {
   width: 4.13rem;
   height: 5.01rem;
   background-size: 100% 100%;
-  background-image: url(../img/share_tips.png);
+  background-image: url(../img/share-tips.png);
   position: fixed;
   z-index: 17;
   top: 0;
@@ -785,7 +789,8 @@ body {
   padding-bottom: .7rem;
 }
 
-.anwser-box div, .anwser-box a {
+.anwser-box div,
+.anwser-box a {
   margin: 0 auto;
   background-size: 100% 100%;
 }
@@ -794,7 +799,7 @@ body {
   width: 6.88rem;
   height: 11.62rem;
   background-image: url(../img/p4-1.png);
-  margin-top: .3rem;
+  margin-top: .6rem;
 }
 
 .anwser-box .anwser2 {
@@ -820,18 +825,14 @@ body {
 }
 
 .anwser-box .back-btn {
-  width: 1.6rem;
-  height: .61rem;
-  line-height: .61rem;
-  font-size: .16rem;
-  color: #fff;
-  text-align: center;
+  width: 1.01rem;
+  height: .53rem;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 11;
-  border: 1px solid #fff;
-  border-radius: 4px;
-  top: .2rem;
+  top: .3rem;
   left: .2rem;
+  background-image: url(../img/back-btn.png);
+  background-size: 100% 100%;
 }

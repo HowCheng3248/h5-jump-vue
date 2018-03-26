@@ -24,13 +24,14 @@ function getWxConfig() {
       initWxShare();
     });
   };
-  var errorCb = function (data) {
-  };
+  var errorCb = function (data) {};
   var upData = JSON.stringify({url: window.location.href});
   var config = {
     url: GETBASEINFO,
     type: 'POST',
-    data: {url: window.location.href},
+    data: {
+      url: window.location.href
+    },
     success: successCb,
     error: errorCb
   };
@@ -41,9 +42,4 @@ function getWxConfig() {
 function initWxShare() {
   wx.onMenuShareTimeline({title: shareData.desc, imgUrl: shareData.imgUrl, link: shareData.link});
   wx.onMenuShareAppMessage(shareData);
-}
-
-function getAjax(data) {
-  data.url = HOST + data.url;
-  $.ajax(data);
 }

@@ -1,6 +1,7 @@
 var HOST = '/apis',
   // HOST = 'http://zc57h.ruosi.wang',
-  GETBASEINFO = '/wx/getBaseInfo';
+  GETBASEINFO = '/wx/getBaseInfo',
+  UPLOAD = '/data/report';
 
 var step = 1;
 var currentOrder = 0;
@@ -156,8 +157,19 @@ var imglist = [
   'p4-1.png',
   'p4-2.png',
   'p4-3.png',
-  'p4-4.png'
+  'p4-4.png',
+  'back-btn.png',
+  'again.png',
+  'anwser.png',
+  'share.png',
+  'share-tips.png',
+  '1gif.png',
+  '2gif.png',
+  '3gif.png',
+  'wrong.png',
+  'right.png'
 ];
+console.log(imglist.length);
 $(function () {
   //rem定义
   var innerWidth = window.innerWidth > 750
@@ -170,12 +182,12 @@ $(function () {
     loadingChess();
   }, 2000);
   var soundBtn = document.getElementsByClassName('sound')[0];
-  document.addEventListener("WeixinJSBridgeReady", function () {//微信  
-    $('#soundFile')[0].play();  
-  }, false);  
- document.addEventListener('YixinJSBridgeReady', function() {//易信  
-    $('#soundFile')[0].play();  
-  }, false);  
+  document.addEventListener("WeixinJSBridgeReady", function () { //微信
+    $('#soundFile')[0].play();
+  }, false);
+  document.addEventListener('YixinJSBridgeReady', function () { //易信
+    $('#soundFile')[0].play();
+  }, false);
   soundBtn.addEventListener("touchstart", function () {
     if ($(this).hasClass('run')) {
       $(this).removeClass('run');
@@ -235,7 +247,6 @@ function tStart() {
   if (!allowJump) {
     return false;
   } else {
-    pressVoice(1);
     var box = $(".g" + (currentOrder + 1));
     t2 = setInterval(function () {
       currentScale -= 0.01;
@@ -267,8 +278,6 @@ function jump() {
     $(".chess").html("");
     var stepWidth = stepLength[currentOrder][0];
     var stepHeight = stepLength[currentOrder][1];
-    pressVoice(0);
-
     if (stepWidth < 0) {
       direction = "rotateY(180deg)";
     } else {
@@ -286,11 +295,8 @@ function jump() {
       box.css("transform", "scaleY(" + currentScale + ")");
     }, 60);
 
-    landVoice();
-
     var t1 = setInterval(function () {
       $(".chess").css({
-        //  "background-position": -step * 2.76 + "rem 0rem",
         "left": startLeft + pos[step][0] * stepWidth + "rem",
         "bottom": startBottom + pos[step][1] * stepHeight + "rem",
         "transform": direction,
@@ -535,4 +541,28 @@ function preload(cb) { //图片预加载
       clearInterval(t1);
     }
   }, 500);
+}
+
+/**上报数据
+ * @param {String} type 事件 score,again,share
+ * @param {Number} value 分数值 有就传值，没有传0
+ */
+function uploadData(type, value) {
+  var successCb = function (data) {};
+  var errorCb = function (data) {};
+  var config = {
+    url: UPLOAD,
+    type: 'POST',
+    data: {
+      type: type,
+      value: value
+    },
+    success: successCb,
+    error: errorCb
+  };
+  getAjax(config);
+}
+function getAjax(data) {
+  data.url = HOST + data.url;
+  $.ajax(data);
 }
