@@ -38,7 +38,7 @@ body {
   position: absolute;
   bottom: 2.8rem;
   left: 4.8rem;
-  z-index: 2;
+  z-index: 3;
   -webkit-transform-origin: bottom center;
   transform-origin: bottom center;
 }
