@@ -1,7 +1,7 @@
-var HOST = '/apis',
-    // HOST = 'http://zc57h.ruosi.wang',
+var //HOST = '/apis',
+    HOST = 'http://zc57h.ruosi.wang',
     GETBASEINFO = '/wx/getBaseInfo',
-    UPLOAD = '/data/report';
+    UPLOAD = '/wx/report';
 
 var step = 1;
 var currentOrder = 0;
@@ -177,30 +177,29 @@ $(function () {
     document.documentElement.style.fontSize = innerWidth / 7.5 + 'px';
     FastClick.attach(document.body);
     background = document.getElementById("tap");
-    var load_ani = setInterval(function () {
-        loadingChess();
-    }, 2000);
+
     var soundBtn = document.getElementsByClassName('sound')[0];
+    var soundFile = document.getElementById('soundFile');
     document.addEventListener("WeixinJSBridgeReady", function () { //微信
-        $('#soundFile')[0].play();
+        soundFile.play();
     }, false);
     document.addEventListener('YixinJSBridgeReady', function () { //易信
-        $('#soundFile')[0].play();
+        soundFile.play();
     }, false);
     soundBtn.addEventListener("touchstart", function () {
         if ($(this).hasClass('run')) {
             $(this).removeClass('run');
-            $('#soundFile')[0].pause();
+            soundFile.pause();
         } else {
             $(this).addClass('run');
-            $('#soundFile')[0].play();
+            soundFile.play();
         }
     }, false);
+
     preload(function () {
         $(".start").fadeIn(300);
         $("#background").show();
         $(".start").one("click", function () {
-            clearInterval(load_ani);
             $("#tap").show();
             $(".cover").fadeOut(300);
             allowJump = true;
@@ -224,8 +223,7 @@ $(function () {
                     .show();
                 $(".sharebox").show();
                 $mask.click(function () {
-                    $mask
-                        .css('z-index', 12);
+                    $mask.css('z-index', 12);
                     $(".sharebox").hide();
                     $mask.unbind('click');
                 });
@@ -364,8 +362,7 @@ function jump() {
             }
 
         }, 30);
-    } else {
-    }
+    } else {}
 }
 
 function point() {
@@ -390,9 +387,9 @@ function point() {
         : 200 - rdnStartLeft;
     var rdnDurationTime = parseInt(Math.random() * 1000 + 1000);
     $("<div/>", {
-        'class': 'point',
-        'style': 'top:' + rdnStartTop / 100 + 'rem;left:' + rdnStartLeft / 100 + 'rem;background-color:' + color + ';width:' + width / 100 + "rem;height:" + width / 100 + "rem"
-    })
+            'class': 'point',
+            'style': 'top:' + rdnStartTop / 100 + 'rem;left:' + rdnStartLeft / 100 + 'rem;background-color:' + color + ';width:' + width / 100 + "rem;height:" + width / 100 + "rem"
+        })
         .appendTo($(".chess"))
         .animate({
             top: (2 + fixedPosition1 / 100) + 'rem',
@@ -411,8 +408,8 @@ function showQuestion(cb) {
             .split("，");
     var code = '<a class="btn btn-A"><span>A</span>' + text[0] + '</a><a class="btn btn-B"><span>B</span>' + text[1] + '</a>';
     var oquestion = $("<div/>", {
-        "class": "question question_in p" + (currentOrder + 1)
-    })
+            "class": "question question_in p" + (currentOrder + 1)
+        })
         .html(code)
         .appendTo($("body"));
     $(".mask").show();
@@ -447,7 +444,7 @@ function showQuestion(cb) {
                 $('.question').remove();
                 if (currentOrder === 8) { //最后一步
                     allowJump = false;
-                    uploadData('score', parseInt(score));
+                    uploadData('score', parseInt(score + '0'));
                     var $scoreBox = $('.score-box'),
                         git = '';
                     gif = score <= 2
@@ -469,31 +466,6 @@ function showQuestion(cb) {
                 }
             }, questionTime);
         });
-}
-
-function loadingChess() {
-    var o = 0;
-    var h = 0;
-    var stu = 1;
-    var count = 0;
-    var t_cover = setInterval(function () {
-        o++;
-        h += 0.2 * stu;
-        if (h > 1) {
-            stu = -1
-        }
-        ;
-        o = o > 11
-            ? 0
-            : o;
-        $(".cover_chess").css({
-            "background-position": -o * 2.76 + "rem 0rem",
-            "bottom": (4.8 + h) + "rem"
-        });
-        if (count++ > 10) {
-            clearInterval(t_cover);
-        }
-    }, 40);
 }
 
 function reset() {
@@ -536,14 +508,13 @@ function preload(cb) { //图片预加载
                 loadedCount++;
                 tmpList.pop(tmpList[i]);
             };
-            if (img.complete) {
-            } else {
-            }
+            if (img.complete) {} else {}
         }
         if (loadedCount == loopCount) {
             console.log("大图加载完成");
             cb();
             clearInterval(t1);
+            JSON.parse
         }
     }, 500);
 }
@@ -557,8 +528,7 @@ function uploadData(type, value) {
         console.log(data);
         console.log('成功了！');
     };
-    var errorCb = function (data) {
-    };
+    var errorCb = function (data) {};
     var config = {
         url: UPLOAD,
         type: 'POST',

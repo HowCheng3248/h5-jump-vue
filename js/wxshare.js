@@ -13,7 +13,7 @@ function getWxConfig() {
   var successCb = function (data) {
     var wxConfig = JSON.parse(data);
     wx.config({
-      debug: true,
+      debug: false,
       appId: wxConfig.appId,
       timestamp: wxConfig.timestamp,
       nonceStr: wxConfig.noncestr,
