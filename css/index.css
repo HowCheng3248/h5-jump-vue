@@ -56,7 +56,7 @@ body {
 
 .group {
   position: absolute;
-  width: 3rem;
+  width: 4rem;
   height: 3rem;
   -webkit-transform-origin: bottom center;
   transform-origin: bottom center;
@@ -65,7 +65,7 @@ body {
 .group .box {
   background-position: center center;
   background-repeat: no-repeat;
-  width: 3rem;
+  width: 4rem;
   height: 3rem;
   z-index: 1;
   position: absolute;
@@ -76,7 +76,7 @@ body {
 }
 
 .g1 {
-  left: 4rem;
+  left: 3.5rem;
   bottom: 1rem;
 }
 
@@ -88,7 +88,7 @@ body {
 }
 
 .g2 {
-  left: 1rem;
+  left: .3rem;
   bottom: 3rem;
 }
 
@@ -100,7 +100,7 @@ body {
 }
 
 .g3 {
-  left: 4rem;
+  left: 3.5rem;
   bottom: 5rem;
 }
 
@@ -110,7 +110,7 @@ body {
 }
 
 .g4 {
-  left: 1rem;
+  left: .3rem;
   bottom: 7rem;
 }
 
@@ -120,7 +120,7 @@ body {
 }
 
 .g5 {
-  left: 4rem;
+  left: 3.5rem;
   bottom: 9rem;
 }
 
@@ -130,7 +130,7 @@ body {
 }
 
 .g6 {
-  left: 1rem;
+  left: .3rem;
   bottom: 11rem;
 }
 
@@ -140,7 +140,7 @@ body {
 }
 
 .g7 {
-  left: 4rem;
+  left: 3.5rem;
   bottom: 13rem;
 }
 
@@ -150,7 +150,7 @@ body {
 }
 
 .g8 {
-  left: 1rem;
+  left: .3rem;
   bottom: 15rem;
 }
 
@@ -160,7 +160,7 @@ body {
 }
 
 .g9 {
-  left: 4rem;
+  left: 3.5rem;
   bottom: 17rem;
 }
 
@@ -328,7 +328,7 @@ body {
   background-size: 100% 100%;
   position: fixed;
   left: 50%;
-  top: 50%;
+  top: 44%;
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
   z-index: 13;
@@ -440,7 +440,8 @@ body {
   bottom: 0;
   z-index: 10;
   background-image: url('../img/bg-1.jpg');
-  background-size: 100% 100%;
+  background-size: cover;
+  background-position: center;
   background-repeat: repeat-x;
   z-index: 11;
 }
@@ -585,8 +586,8 @@ body {
   transform: translateX(-50%);
   color: red;
   font-size: 0.4rem;
-  /* font-weight: bold; */
   line-height: 0.94rem;
+  font-family: "SourceHanSansCN-Regular";
 }
 
 .question.p7 .btn {
@@ -719,7 +720,7 @@ body {
   bottom: 0;
   right: 0;
   background-color: #000;
-  opacity: .8;
+  opacity: .9;
   z-index: 10;
   display: none;
 }
@@ -800,7 +801,7 @@ body {
   width: 6.88rem;
   height: 11.62rem;
   background-image: url(../img/p4-1.png);
-  margin-top: .6rem;
+  margin-top: .1rem;
 }
 
 .anwser-box .anwser2 {
@@ -828,12 +829,21 @@ body {
 .anwser-box .back-btn {
   width: 1.01rem;
   height: .53rem;
-  position: fixed;
+  /* position: fixed;
   top: 0;
   left: 0;
   z-index: 11;
   top: .3rem;
-  left: .2rem;
+  left: .2rem; */
+  display: block;
   background-image: url(../img/back-btn.png);
   background-size: 100% 100%;
+  margin: .5rem 0 0 .4rem;
+}
+
+/* 思源黑体 */
+
+@font-face {
+  font-family: "SourceHanSansCN-Regular";
+  src: url("../font/SourceHanSansCN-Regular.woff2") format("woff2"), url("../font/SourceHanSansCN-Regular.woff") format("woff"), url("../font/SourceHanSansCN-Regular.ttf") format("truetype"), url("../font/SourceHanSansCN-Regular.eot") format("embedded-opentype"), url("../font/SourceHanSansCN-Regular.svg") format("svg");
 }
