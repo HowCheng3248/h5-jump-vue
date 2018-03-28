@@ -581,9 +581,9 @@ body {
   background-size: 100% 100%;
   background-image: url(../img/p2-btn-lg.png);
   position: absolute;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
+  left: 1.52rem;
+  /* -webkit-transform: translateX(-50%);
+  transform: translateX(-50%); */
   color: red;
   font-size: 0.4rem;
   line-height: 0.94rem;

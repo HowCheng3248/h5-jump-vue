@@ -54,52 +54,62 @@ var pos = [
     [1, 1]
 ];
 var stepLength = [
-    [-3.02, 1.9],
+    [
+        -3.02, 1.9
+    ],
     [
         3.02, 2.04
     ],
-    [-3.02, 1.9],
+    [
+        -3.02, 1.9
+    ],
     [
         3.02, 2
     ],
-    [-3.02, 2],
+    [
+        -3.02, 2
+    ],
     [
         3.02, 2.04
     ],
-    [-3.02, 2.1],
+    [
+        -3.02, 2.1
+    ],
     [
         3.02, 2.1
     ],
     [-1, 1] //最后一步移动方向判定
 ];
-var question = [{
-    text: '1991年，2002年',
-    answer: 1
-}, {
-    text: '糖尿病，高血压',
-    answer: 0
-}, {
-    text: '长沙 ，北京',
-    answer: 0
-}, {
-    text: '2012年 ，2015年',
-    answer: 0
-}, {
-    text: '蓝色，红色',
-    answer: 1
-}, {
-    text: 'you ，love',
-    answer: 1
-}, {
-    text: '安稳+ ，安准+',
-    answer: 0
-}, {
-    text: '28，18',
-    answer: 0
-}, {
-    text: '135个，105个',
-    answer: 0
-}];
+var question = [
+    {
+        text: '1991年，2002年',
+        answer: 1
+    }, {
+        text: '糖尿病，高血压',
+        answer: 0
+    }, {
+        text: '长沙 ，北京',
+        answer: 0
+    }, {
+        text: '2012年 ，2015年',
+        answer: 0
+    }, {
+        text: '蓝色，红色',
+        answer: 1
+    }, {
+        text: 'you ，love',
+        answer: 1
+    }, {
+        text: '安稳+ ，安准+',
+        answer: 0
+    }, {
+        text: '二、八，一、六',
+        answer: 1
+    }, {
+        text: '135个，105个',
+        answer: 0
+    }
+];
 var background;
 var imglist = [
     'sannuo.png',
@@ -161,9 +171,9 @@ var imglist = [
 ];
 $(function () {
     //rem定义
-    var innerWidth = window.innerWidth > 750 ?
-        750 :
-        window.innerWidth;
+    var innerWidth = window.innerWidth > 750
+        ? 750
+        : window.innerWidth;
     document.documentElement.style.fontSize = innerWidth / 7.5 + 'px';
     FastClick.attach(document.body);
     background = document.getElementById("tap");
@@ -240,9 +250,9 @@ function tStart() {
         var box = $(".g" + (currentOrder + 1));
         t2 = setInterval(function () {
             currentScale -= 0.01;
-            currentScale = currentScale < 0.9 ?
-                0.9 :
-                currentScale;
+            currentScale = currentScale < 0.9
+                ? 0.9
+                : currentScale;
             box.css("transform", "scaleY(" + currentScale + ")");
 
             $(".chess").css({
@@ -364,19 +374,19 @@ function point() {
     color = color[parseInt(Math.random() * 2)];
     var width = parseInt(Math.random() * 2) + 8;
     var fixedPosition1 = parseInt(Math.random() * 40);
-    fixedPosition1 = fixedPosition1 % 2 === 0 ?
-        fixedPosition1 :
-        -fixedPosition1;
-    fixedPosition2 = fixedPosition2 % 2 === 0 ?
-        fixedPosition2 :
-        -fixedPosition2;
+    fixedPosition1 = fixedPosition1 % 2 === 0
+        ? fixedPosition1
+        : -fixedPosition1;
+    fixedPosition2 = fixedPosition2 % 2 === 0
+        ? fixedPosition2
+        : -fixedPosition2;
     var fixedPosition2 = parseInt(Math.random() * 20);
-    rdnStartTop = rdnStartTop % 2 === 0 ?
-        rdnStartTop + 100 :
-        350 - rdnStartTop;
-    rdnStartLeft = rdnStartLeft % 2 === 0 ?
-        rdnStartLeft :
-        200 - rdnStartLeft;
+    rdnStartTop = rdnStartTop % 2 === 0
+        ? rdnStartTop + 100
+        : 350 - rdnStartTop;
+    rdnStartLeft = rdnStartLeft % 2 === 0
+        ? rdnStartLeft
+        : 200 - rdnStartLeft;
     var rdnDurationTime = parseInt(Math.random() * 1000 + 1000);
     $("<div/>", {
             'class': 'point',
@@ -396,8 +406,8 @@ function showQuestion(cb) {
     $('.question').remove();
     var code,
         text = question[currentOrder]
-        .text
-        .split("，");
+            .text
+            .split("，");
     var code = '<a class="btn btn-A"><span>A</span>' + text[0] + '</a><a class="btn btn-B"><span>B</span>' + text[1] + '</a>';
     var oquestion = $("<div/>", {
             "class": "question question_in p" + (currentOrder + 1)
@@ -440,7 +450,11 @@ function showQuestion(cb) {
                     uploadData('score', parseInt(score + '0'));
                     var $scoreBox = $('.score-box'),
                         git = '';
-                    gif = score > 6 ? 'gif1' : score > 2 ? 'gif2' : 'gif3';
+                    gif = score > 6
+                        ? 'gif1'
+                        : score > 2
+                            ? 'gif2'
+                            : 'gif3';
                     $scoreBox
                         .addClass(gif)
                         .show();
@@ -459,10 +473,7 @@ function showQuestion(cb) {
 
 function reset() {
 
-    $(".background").css({
-        "bottom": 0,
-        "left": 0
-    });
+    $(".background").css({"bottom": 0, "left": 0});
     step = 1;
     $('.number').attr('class', 'number score0');
     $('.question').remove();
@@ -478,10 +489,7 @@ function reset() {
     allowJump = true;
     background.addEventListener("touchend", tStart, false);
     $(".chess")
-        .css({
-            "bottom": "2.8rem",
-            "left": "4.8rem"
-        })
+        .css({"bottom": "2.8rem", "left": "4.8rem"})
         .html("");
     $(".box").removeClass("box_in");
     $(".number")
